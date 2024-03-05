@@ -34,7 +34,7 @@ const Header = () => {
       <nav className="space-x-3">
         <Link to="/home">Home</Link>
         <Link to="/product">Product</Link>
-        <Link to="/about">About</Link>
+        {/* <Link to="/about">About</Link> */}
         <Link to="/service">Service</Link>
         <Link to="/blog">Blog</Link>
         <Link to="/contact">Contact</Link>
