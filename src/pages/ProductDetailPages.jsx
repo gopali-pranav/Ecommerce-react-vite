@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
+import { addItemToCart } from "../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductDetailPages = () => {
+  const dispatch = useDispatch();
   const productId = useParams();
   const [singleProduct, setSingleProduct] = useState([]);
   const [currentImages, setCurrentImages] = useState(null);
@@ -107,7 +110,10 @@ const ProductDetailPages = () => {
             <option>6</option>
           </select>
           <div className="p-5">
-            <button className="bg-yellow-500 text-white w-full rounded-md font-bold h-10">
+            <button
+              className="bg-yellow-500 text-white w-full rounded-md font-bold h-10"
+              onClick={() => dispatch(addItemToCart(singleProduct))}
+            >
               Add to Cart
             </button>
           </div>
