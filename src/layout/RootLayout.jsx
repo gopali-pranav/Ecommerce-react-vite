@@ -9,15 +9,16 @@ import ProductList from "../components/ProductList";
 import BlogPages from "../pages/BlogPages";
 import ContactPages from "../pages/ContactPages";
 import ServicePages from "../pages/ServicePages";
+import { Toaster } from "react-hot-toast";
 
 const RootLayout = () => {
   return (
     <>
       <Header />
+      <Toaster />
       <Routes>
         <Route path="/" element={<HomePages />} />
         <Route path="/home" element={<HomePages />} />
-        {/* <Route path="/about" element={<AboutPages />} /> */}
         <Route path="/product" element={<ProductList />} />
         <Route path="/blog" element={<BlogPages />} />
         <Route path="/contact" element={<ContactPages />} />

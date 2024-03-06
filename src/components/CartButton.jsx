@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { IoIosClose } from "react-icons/io";
+import { AiFillDelete } from "react-icons/ai";
 
 const CartButton = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -23,26 +24,30 @@ const CartButton = () => {
           showMenu ? "block" : "hidden"
         }`}
       >
-        <div
+        <button
           onClick={() => setShowMenu(false)}
           className="closeBtn absolute -top-2 -right-2 border-2 border-white h-6 w-6 bg-red-500 rounded-full flex  items-center text-white cursor-pointer"
         >
           <IoIosClose className="text-4xl" />
-        </div>
+        </button>
         <div className="heading space-y-3">
           <h3 className="text-xl font-bold uppercase text-gray-600 ">
             Shopping Cart
           </h3>
-          <div className="items space-y-4  ">
+          <div className="items space-y-6  ">
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
                 <div
                   key={item.id}
-                  className="shadow-md  flex gap-3 border-gray-400 border-[1px] p-3 rounded-md"
+                  className="shadow-md relative flex gap-3 border-gray-400 border-[1px] p-3 rounded-md"
                 >
                   <div className="image">
                     {" "}
-                    <img src={item.thumbnail} alt="" className="size-16" />
+                    <img
+                      src={item.thumbnail}
+                      alt=""
+                      className="size-16 bg-gray-200 rounded-lg p-2 object-cover"
+                    />
                   </div>
                   <div className="info">
                     <h2 className="text-purple-600">{item.title}</h2>
@@ -51,6 +56,9 @@ const CartButton = () => {
                         (item.price * item.discountPercentage) / 100}
                     </p>
                   </div>
+                  <button className="deleteItem absolute -top-2 -right-2 text-white font-bold h-6 w-6 flex items-center justify-center rounded-full bg-red-700 ">
+                    <AiFillDelete />
+                  </button>
                 </div>
               ))
             ) : (
