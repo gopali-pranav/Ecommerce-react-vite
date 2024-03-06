@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../redux/cartSlice";
 function ProductList() {
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,9 +48,16 @@ function ProductList() {
               <p className="price font-semibold text-stone-700">
                 Price: <span className="text-red-400">${product.price}</span>
               </p>
-              <button className="text-sky-400 font-bold">
-                <Link to={`/${product.id}`}>See more...</Link>
-              </button>
+              <div className="links flex gap-60  ">
+                <button className="text-sky-400 font-bold">
+                  <Link to={`/${product.id}`}>See more...</Link>
+                </button>
+                <button className="text-sky-400 bg-yellow-400 text-white w-[80px] rounded-lg relative bottom-1">
+                  <button onClick={() => dispatch(addItemToCart(product))}>
+                    Cart
+                  </button>
+                </button>
+              </div>
             </div>
           ))
         ) : (

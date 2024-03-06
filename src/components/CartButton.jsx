@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { FaCartShopping } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IoIosClose } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
+import { removeFromCart } from "../redux/cartSlice";
 
 const CartButton = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
   console.log(cartItems);
+  const dispatch = useDispatch();
   return (
     <div className="group relative">
       <button
@@ -56,7 +58,10 @@ const CartButton = () => {
                         (item.price * item.discountPercentage) / 100}
                     </p>
                   </div>
-                  <button className="deleteItem absolute -top-2 -right-2 text-white font-bold h-6 w-6 flex items-center justify-center rounded-full bg-red-700 ">
+                  <button
+                    className="deleteItem absolute -top-2 -right-2 text-white font-bold h-6 w-6 flex items-center justify-center rounded-full bg-red-700 "
+                    onClick={() => dispatch(removeFromCart(item.id))}
+                  >
                     <AiFillDelete />
                   </button>
                 </div>
