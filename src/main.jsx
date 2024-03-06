@@ -11,6 +11,7 @@ import ProductPages from "./pages/ProductPages.jsx";
 import ProductDetailPages from "./pages/ProductDetailPages.jsx";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
+import CartPages from "./pages/CartPages.jsx";
 
 const myRouter = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const myRouter = createBrowserRouter([
       {
         path: "/:id",
         element: <ProductDetailPages />,
+      },
+      {
+        path: "/cart",
+        element: <CartPages />,
       },
     ],
   },

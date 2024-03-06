@@ -24,9 +24,51 @@ export const cartSlice = createSlice({
       const id = action.payload;
       state.cartItems = state.cartItems.filter((item) => item.id != id);
     },
+    increaseQuantity: (state, action) => {
+      const id = action.payload;
+      const updatingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
+
+      if (updatingItemIndex !== -1) {
+        //if the item is found in the cart
+        const updateCartItems = [...state.cartItems]; //create a copy of cart item
+        updateCartItems[updatingItemIndex] = {
+          //update the quantity of specified item
+          ...updateCartItems[updatingItemIndex],
+          quantity: updateCartItems[updatingItemIndex].quantity + 1,
+        };
+        state.cartItems = updateCartItems; //update the stare with the new cart item
+      }
+    },
+    decreaseQuantity: (state, action) => {
+      const id = action.payload;
+      const updatingItemIndex = state.cartItems.findIndex(
+        (item) => item.id === id
+      );
+
+      if (updatingItemIndex !== -1) {
+        //if the item is found in the cart
+        const updateCartItems = [...state.cartItems]; //create a copy of cart item
+        updateCartItems[updatingItemIndex] = {
+          //update the quantity of specified item
+          ...updateCartItems[updatingItemIndex],
+          quantity: updateCartItems[updatingItemIndex].quantity - 1,
+        };
+        state.cartItems = updateCartItems; //update the stare with the new cart item
+      }
+      if (state.cartItems[updatingItemIndex].quantity < 1) {
+        state.cartItems = state.cartItems.filter((item) => item.id != id);
+      }
+    },
   },
 });
 
-export const { addItemToCart, removeFromCart } = cartSlice.actions;
+export const {
+  addItemToCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

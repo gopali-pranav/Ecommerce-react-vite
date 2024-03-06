@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { CiStar } from "react-icons/ci";
 import { addItemToCart } from "../redux/cartSlice";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const ProductDetailPages = () => {
   const dispatch = useDispatch();
@@ -53,14 +53,14 @@ const ProductDetailPages = () => {
         </h2>
       </div>
       <div className="flex justify-center p-5">
-        <div className="flex p-4 gap-4 ">
-          <div className="images w-1/4 flex flex-col gap-3">
+        <div className="flex p-4 gap-10 ">
+          <div className="images h-96 flex flex-col gap-3">
             {singleProduct?.images?.map((item, index) => (
               <img
                 key={index}
                 src={item}
                 onClick={() => setCurrentImages(item)}
-                className="size-32 bg-gray-300 p-5 rounded-md"
+                className="size-20 cursor-pointer bg-gray-300 p-5 rounded-md"
               ></img>
             ))}
           </div>
@@ -96,7 +96,6 @@ const ProductDetailPages = () => {
               <CiStar />
               {singleProduct.rating}
             </div>
-
             <p className="font-bold text-red-500">
               {singleProduct.stock < 1 ? "outofstock" : "In stock"}
             </p>
@@ -105,29 +104,20 @@ const ProductDetailPages = () => {
             </p>
             <p>Category: {singleProduct.category}</p>
           </div>
-        </div>
-        <div className=" m-4 mx-10" style={{ width: "300px" }}>
-          <select className="w-full border-2 border-gray-400 rounded-md h-10 text-center">
-            <option>Select Quantity</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-          <div className="p-5">
-            <button
-              className="bg-yellow-500 text-white w-full rounded-md font-bold h-10"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </button>
-          </div>
-          <div className="p-5">
-            <button className="bg-yellow-600 text-white w-full rounded-md font-bold h-10">
-              Buy Now
-            </button>
+          <div className=" m-4 mx-10" style={{ width: "300px" }}>
+            <div className="p-5">
+              <button
+                className="bg-yellow-500 text-white w-full rounded-md font-bold h-10"
+                onClick={handleAddToCart}
+              >
+                Add to Cart
+              </button>
+            </div>
+            <div className="p-5">
+              <button className="bg-yellow-600 text-white w-full rounded-md font-bold h-10">
+                Buy Now
+              </button>
+            </div>
           </div>
         </div>
       </div>
