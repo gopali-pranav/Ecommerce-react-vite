@@ -41,10 +41,9 @@ const CartButton = () => {
             {cartItems.reduce(
               (acc, item) =>
                 acc +
-                Math.round(
-                  item.price -
-                    ((item.price * item.discountPercentage) / 100) *
-                      item.quantity
+                Math.ceil(
+                  (item.price - (item.price * item.discountPercentage) / 100) *
+                    item.quantity
                 ),
               0
             )}
@@ -72,8 +71,9 @@ const CartButton = () => {
                   <p>
                     $
                     {(
-                      item.price -
-                      (item.price * item.discountPercentage) / 100
+                      (item.price -
+                        (item.price * item.discountPercentage) / 100) *
+                      item.quantity
                     ).toFixed(0)}
                   </p>
                 </div>

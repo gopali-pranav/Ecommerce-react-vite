@@ -25,9 +25,8 @@ const CartButton = () => {
               (acc, item) =>
                 acc +
                 Math.round(
-                  item.price -
-                    ((item.price * item.discountPercentage) / 100) *
-                      item.quantity
+                  (item.price - (item.price * item.discountPercentage) / 100) *
+                    item.quantity
                 ),
               0
             )}
