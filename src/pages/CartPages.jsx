@@ -3,13 +3,61 @@ import { FaCartShopping, FaMinus, FaPlus } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { IoIosClose } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
-import { decreaseQuantity, removeFromCart } from "../redux/cartSlice";
+import {
+  clearCart,
+  decreaseQuantity,
+  removeFromCart,
+} from "../redux/cartSlice";
 import { Link } from "react-router-dom";
 import { increaseQuantity } from "../redux/cartSlice";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const CartButton = () => {
+  const [loading, setloading] = useState(false);
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const handleOrder = async () => {
+    try {
+      const totalAmount = Math.ceil(
+        cartItems.reduce(
+          (acc, item) =>
+            acc +
+            (item.price - (item.price * item.discountPercentage) / 100) *
+              item.quantity,
+          0
+        )
+      );
+      const products = cartItems.map((item) => ({
+        name: item.title,
+        quantity: item.quantity,
+        price: Math.round(
+          item.price - (item.price * item.discountPercentage) / 100
+        ),
+      }));
+      const sendingData = {
+        totalAmount,
+        products,
+      };
+
+      const response = await axios.post(
+        "http://localhost:3000/orders",
+        sendingData
+      );
+      console.log(response.data);
+      if (response.data) {
+        toast("Order has been placed successfully");
+      } else {
+        console.error("Unexpected response status:", response.status);
+        toast("Failed to palce order. Please try again later.");
+      }
+      dispatch(clearCart());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="group ">
       <div
@@ -91,11 +139,12 @@ const CartButton = () => {
           )}
         </div>
         <div className="action space-x-20 mt-5 p-2 ml-1">
-          <Link to={"/checkout"}>
-            <button className="bg-purple-500 rounded-md p-2 text-white font-bold">
-              Checkout Now
-            </button>
-          </Link>
+          <button
+            className="bg-purple-500 rounded-md p-2 text-white font-bold"
+            onClick={handleOrder}
+          >
+            {loading ? "Sending Order..." : "Send Order"}
+          </button>
         </div>
       </div>
     </div>
