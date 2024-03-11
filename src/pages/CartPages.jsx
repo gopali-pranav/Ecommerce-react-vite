@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { FaCartShopping, FaMinus, FaPlus } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
-import { IoIosClose } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import {
   clearCart,
   decreaseQuantity,
   removeFromCart,
 } from "../redux/cartSlice";
-import { Link } from "react-router-dom";
 import { increaseQuantity } from "../redux/cartSlice";
 import axios from "axios";
 import toast from "react-hot-toast";

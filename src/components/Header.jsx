@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import HeaderSearch from "./HeaderSearch";
 import CartButton from "./CartButton";
+import LoginButton from "./LoginButton";
 
 const Header = () => {
   return (
@@ -21,9 +22,7 @@ const Header = () => {
       </nav>
       <CartButton />
       <div className="buttons">
-        <button className="bg-blue-700 text-white px-5 py-2 rounded">
-          Login
-        </button>
+        <LoginButton />
       </div>
     </header>
   );
