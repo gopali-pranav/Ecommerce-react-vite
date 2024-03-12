@@ -11,6 +11,7 @@ import ServicePages from "../pages/ServicePages";
 import { Toaster } from "react-hot-toast";
 import CartPages from "../pages/CartPages";
 import LoginPages from "../pages/LoginPages";
+import OrdersPages from "../pages/OrdersPages";
 
 const RootLayout = () => {
   return (
@@ -27,6 +28,7 @@ const RootLayout = () => {
         <Route path="/:id" element={<ProductDetailPages />} />
         <Route path="/cart" element={<CartPages />} />
         <Route path="/login" element={<LoginPages />} />
+        <Route path="/order" element={<OrdersPages />} />
       </Routes>
       <Footer />
     </>
