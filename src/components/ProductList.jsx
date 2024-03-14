@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../redux/cartSlice";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+
 function ProductList() {
   const [products, setProducts] = useState([]);
+  const searchQuery = useSelector((state) => state.searchQuery.searchQuery);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const dispatch = useDispatch();
   const isLoading = products.length === 0;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,6 +25,17 @@ function ProductList() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (searchQuery === "") {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchQuery, products]);
 
   const handleAddToCart = (product) => {
     dispatch(addItemToCart(product));
@@ -49,7 +65,7 @@ function ProductList() {
                 </div>
               </div>
             ))
-          : products.map((product) => (
+          : filteredProducts.map((product) => (
               <div
                 className="product leading-8 mx-4 px-4 shadow-xl"
                 key={product.id}
