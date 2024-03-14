@@ -73,7 +73,6 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   clearCart,
-  setSearchQuery,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
