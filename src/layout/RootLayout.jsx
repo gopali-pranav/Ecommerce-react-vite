@@ -12,6 +12,7 @@ import { Toaster } from "react-hot-toast";
 import CartPages from "../pages/CartPages";
 import LoginPages from "../pages/LoginPages";
 import OrdersPages from "../pages/OrdersPages";
+import SignUpPages from "../pages/SignUpPages";
 
 const RootLayout = () => {
   return (
@@ -29,6 +30,7 @@ const RootLayout = () => {
         <Route path="/cart" element={<CartPages />} />
         <Route path="/login" element={<LoginPages />} />
         <Route path="/order" element={<OrdersPages />} />
+        <Route path="/signUp" element={<SignUpPages />} />
       </Routes>
       <Footer />
     </>

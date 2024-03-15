@@ -11,9 +11,9 @@ const CartButton = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   return (
-    <div className="group relative ">
+    <div className="group relative  ">
       <button
-        className="cartIcon text-3xl relative left-20 text-purple-400 "
+        className="cartIcon text-3xl text-purple-400  "
         onClick={() => setShowMenu(true)}
       >
         <FaCartShopping />
@@ -22,22 +22,22 @@ const CartButton = () => {
         </div>
       </button>
       <div
-        className={`cartItems w-96 absolute top-15 -right-16 rounded-md shadow-md z-50 bg-white border-[1px] border-gray-300 p-5 ${
+        className={`cartItems w-96 absolute top-15 -right-0 rounded-md shadow-md z-50 bg-white border-[1px] border-gray-300 p-5 ${
           showMenu ? "block" : "hidden"
-        }`}
+        } dark:bg-slate-800 dark:text-white `}
       >
         <button
           onClick={() => setShowMenu(false)}
-          className="closeBtn absolute -top-2 -right-2 border-2 border-white h-6 w-6 bg-red-500 rounded-full flex  items-center text-white cursor-pointer"
+          className="closeBtn absolute -top-2 -right-2 border-2 border-white h-6 w-6 bg-red-500 rounded-full flex  items-center text-white cursor-pointer "
         >
           <IoIosClose className="text-4xl" />
         </button>
         <div className="heading flex justify-between">
-          <h3 className="text-xl font-bold uppercase text-gray-600 mb-3">
+          <h3 className="text-xl font-bold uppercase text-gray-600 mb-3 dark:text-white">
             Shopping Cart
           </h3>
-          <div className="totalPrice h-6 text-gray-600 font-bold ">
-            <span className="text-red-400">Total :</span> $
+          <div className="totalPrice h-6 text-gray-600 font-bold dark:text-white">
+            <span className="text-red-400 dark:text-white">Total :</span> $
             {cartItems.reduce(
               (acc, item) =>
                 acc +

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const LoginButton = ({ onClick }) => {
   return (
     <button
-      className="bg-blue-700 text-white px-5 py-2 rounded"
+      className="bg-blue-700 text-white px-5 py-2 rounded md:ml-4"
       onClick={onClick}
     >
       <Link to="/login">Login</Link>

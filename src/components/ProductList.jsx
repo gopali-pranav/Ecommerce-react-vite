@@ -43,7 +43,7 @@ function ProductList() {
   };
 
   return (
-    <div>
+    <div className="dark:bg-slate-800 dark:text-white">
       <h3 className="text-center font-bold p-4 text-3xl">Featured products</h3>
       <div className="grid gap-3 sm:gap-4 md:gap-5 p-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {isLoading

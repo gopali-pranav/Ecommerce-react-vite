@@ -46,7 +46,7 @@ const ProductDetailPages = () => {
   }
 
   return (
-    <div>
+    <div className="dark:bg-slate-800 dark:text-white">
       <div className="flex justify-around p-2 border-b-2">
         <h2 className="text-3xl font-bold text-gray-700">LG</h2>
         <h4 className="text-lg font-semibold">

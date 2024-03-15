@@ -27,7 +27,8 @@ const HeaderSearch = () => {
         placeholder="Search"
         value={searchTerm}
         onChange={handleChange}
-        className="border-2 w-80 h-8 rounded-md p-2 hover:border-blue-700 border-gray-500"
+        className="border-2 w-full sm:w-80 h-8 rounded-md p-2 hover:border-blue-700 border-gray-500"
+        // Adjust width for small screens (w-full) and larger screens (sm:w-80)
       />
       <button
         type="submit"

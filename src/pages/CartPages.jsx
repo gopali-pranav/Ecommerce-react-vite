@@ -61,10 +61,10 @@ const CartButton = () => {
   return (
     <div className="group ">
       <div
-        className={`cartItems rounded-md shadow-md z-50 bg-white border-[1px] border-gray-300 p-5`}
+        className={`cartItems rounded-md shadow-md z-50 bg-white border-[1px] border-gray-300 p-5 dark:bg-slate-800 dark:text-white`}
       >
         <div className="heading flex justify-between">
-          <h3 className="text-xl font-bold uppercase text-gray-600 mb-3">
+          <h3 className="text-xl font-bold uppercase text-gray-600 mb-3 dark:text-white">
             Shopping Cart
           </h3>
           <div className="totalPrice h-6 text-gray-600 font-bold ">

@@ -1,11 +1,45 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const SignUpPages = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleUser = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    const sendingData = {
+      username,
+      email,
+      password,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/signUp",
+        sendingData
+      );
+
+      console.log(response.data);
+      if (response.data) {
+        toast.success("User has been added successfully");
+      } else {
+        console.error("Unexpected response status:", response.status);
+        toast.error("Failed to add user. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Failed to add user. Please try again later.");
+    }
+  };
+
   return (
     <div>
-      <div class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-10 w-auto"
@@ -13,15 +47,15 @@ const SignUpPages = () => {
               alt="Your Company"
             />
           </div>
-          <h2 class="text-2xl font-semibold mb-6 mt-5 text-gray-800">
+          <h2 className="text-2xl font-semibold mb-6 mt-5 text-gray-800">
             Sign Up
           </h2>
 
-          <form action="#" method="POST">
-            <div class="mb-4">
+          <form onSubmit={handleUser}>
+            <div className="mb-4">
               <label
-                for="username"
-                class="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="username"
+                className="block text-gray-700 text-sm font-semibold mb-2"
               >
                 Username
               </label>
@@ -29,16 +63,18 @@ const SignUpPages = () => {
                 type="text"
                 id="username"
                 name="username"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                 placeholder="Your username"
                 required
               />
             </div>
 
-            <div class="mb-4">
+            <div className="mb-4">
               <label
-                for="email"
-                class="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="email"
+                className="block text-gray-700 text-sm font-semibold mb-2"
               >
                 Email
               </label>
@@ -46,16 +82,18 @@ const SignUpPages = () => {
                 type="email"
                 id="email"
                 name="email"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                 placeholder="Your email"
                 required
               />
             </div>
 
-            <div class="mb-4">
+            <div className="mb-4">
               <label
-                for="password"
-                class="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="password"
+                className="block text-gray-700 text-sm font-semibold mb-2"
               >
                 Password
               </label>
@@ -63,7 +101,9 @@ const SignUpPages = () => {
                 type="password"
                 id="password"
                 name="password"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-500"
                 placeholder="Your password"
                 required
               />
@@ -71,17 +111,17 @@ const SignUpPages = () => {
 
             <button
               type="submit"
-              class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
+              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue"
             >
               Sign Up
             </button>
           </form>
 
-          <p class="text-gray-600 text-sm mt-4">
+          <p className="text-gray-600 text-sm mt-4">
             Already have an account?{" "}
-            <a href="#" class="text-blue-500">
-              <Link to={"/login"}>Login here</Link>
-            </a>
+            <Link to={"/login"} className="text-blue-500">
+              Login here
+            </Link>
             .
           </p>
         </div>

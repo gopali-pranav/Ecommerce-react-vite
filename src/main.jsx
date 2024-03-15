@@ -53,15 +53,15 @@ const myRouter = createBrowserRouter([
         path: "/order",
         element: <OrdersPages />,
       },
+      {
+        path: "/login",
+        element: <LoginPages />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUpPages />,
+      },
     ],
-  },
-  {
-    path: "/login",
-    element: <LoginPages />,
-  },
-  {
-    path: "/signUp",
-    element: <SignUpPages />,
   },
 ]);
 
