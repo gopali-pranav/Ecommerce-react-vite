@@ -1,39 +1,7 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const LoginPages = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const handleLogin = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post("http://localhost:3000/login", {
-        email,
-        password,
-      });
-      console.log(response.data);
-
-      // Check if login was successful
-      if (response.data.success) {
-        // Store token in local storage or session storage
-        localStorage.setItem("token", response.data.token);
-
-        // Redirect user to the home page
-        navigate.push("/home");
-      } else {
-        // Handle invalid credentials
-        alert("Invalid email or password");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to log in. Please try again later.");
-    }
-  };
-
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -48,7 +16,7 @@ const LoginPages = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -63,8 +31,6 @@ const LoginPages = () => {
                 type="email"
                 autoComplete="email"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
@@ -94,8 +60,6 @@ const LoginPages = () => {
                 type="password"
                 autoComplete="current-password"
                 required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
